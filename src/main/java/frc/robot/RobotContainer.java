@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import java.lang.Math;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController.Button;
@@ -23,7 +24,7 @@ public class RobotContainer {
     IntakeSubsystem intake_subsystem = new IntakeSubsystem();
     XboxController driverController = new XboxController(0);
     XboxController operatorController = new XboxController(1);
-
+    
     public RobotContainer() {
       // Intake Subystem default command
       intake_subsystem.setDefaultCommand(
@@ -34,7 +35,7 @@ public class RobotContainer {
             driverController.getTriggerAxis(Hand.kLeft) - 
             driverController.getTriggerAxis(Hand.kRight);
 
-            if (speed > 0.1) {
+            if (speed > Math.abs(0.1)) {
               intake_subsystem.startIntake(speed);
             }
 
